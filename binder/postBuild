@@ -32,7 +32,7 @@ chmod +x xstartup
 # Fiji and OMERO insight
 
 OMERO_INSIGHT_VERSION=5.5.7
-OMERO_INSIGHT_URL_BASE=https://github.com/ome/omero-insight/releases/download/v$OMERO_INSIGHT_VERSION/
+OMERO_INSIGHT_URL_BASE=https://github.com/ome/omero-insight/releases/download/v$OMERO_INSIGHT_VERSION
 # OMERO_INSIGHT_VERSION=5.5.7-SNAPSHOT
 # OMERO_INSIGHT_URL_BASE=https://users.openmicroscopy.org.uk/~spli/insight
 
@@ -41,9 +41,7 @@ unzip -q fiji-nojre.zip
 rm fiji-nojre.zip
 
 pushd Fiji.app/plugins
-wget -q $OMERO_INSIGHT_URL_BASE/OMERO.imagej-$OMERO_INSIGHT_VERSION.zip
-unzip -q OMERO.imagej-$OMERO_INSIGHT_VERSION.zip
-rm OMERO.imagej-$OMERO_INSIGHT_VERSION.zip
+wget -q $OMERO_INSIGHT_URL_BASE/omero_ij-5.5.7-all.jar
 popd
 
 wget -q $OMERO_INSIGHT_URL_BASE/OMERO.insight-$OMERO_INSIGHT_VERSION.zip
