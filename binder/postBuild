@@ -31,10 +31,10 @@ chmod +x xstartup
 # Desktop applications
 # Fiji and OMERO insight
 
-#OMERO_INSIGHT_VERSION=5.5.6
-#OMERO_INSIGHT_URL_BASE=https://github.com/ome/omero-insight/releases/download/v$OMERO_INSIGHT_VERSION/
-OMERO_INSIGHT_VERSION=5.5.7-SNAPSHOT
-OMERO_INSIGHT_URL_BASE=https://users.openmicroscopy.org.uk/~spli/insight
+OMERO_INSIGHT_VERSION=5.5.7
+OMERO_INSIGHT_URL_BASE=https://github.com/ome/omero-insight/releases/download/v$OMERO_INSIGHT_VERSION/
+# OMERO_INSIGHT_VERSION=5.5.7-SNAPSHOT
+# OMERO_INSIGHT_URL_BASE=https://users.openmicroscopy.org.uk/~spli/insight
 
 wget -q https://downloads.imagej.net/fiji/latest/fiji-nojre.zip
 unzip -q fiji-nojre.zip
@@ -71,4 +71,4 @@ python -c "from pkg_resources import iter_entry_points; print(list(iter_entry_po
 popd
 
 # Napari (dependencies already installed using conda)
-pip install --no-dependencies napari==0.2.4
+pip install --no-dependencies napari==0.2.6
