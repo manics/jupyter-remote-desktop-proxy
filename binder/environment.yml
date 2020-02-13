@@ -4,11 +4,11 @@ channels:
   - ome
   - manics
 dependencies:
+  - jupyter-server-proxy
   - python=3.6
   - pip
   - websockify=0.9.0
-  - omero-py>=5.6.dev9
-  - zeroc-ice-python=3.6.5
+  - omero-py=5.6
   # https://github.com/napari/napari/blob/v0.2.4/requirements/default.txt
   - dask
   - zarr
@@ -28,10 +28,7 @@ dependencies:
   - pyside2
   - wrapt
   - numpydoc
-  - pip:
-    # Recent jupyter-server-proxy to load vnc_lite.html instead of /
-    # https://github.com/jupyterhub/jupyter-server-proxy/pull/151
-    - https://github.com/jupyterhub/jupyter-server-proxy/archive/0e67e1afd0bab1342443f13bd147a2f8c682e9e0.zip
+  # - pip:
     # The conda pyside2 package doesn't appear in pip list so napari tries to reinstall it
     # https://github.com/conda-forge/pyside-feedstock/issues/35
     # napari==
