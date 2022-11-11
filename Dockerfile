@@ -1,4 +1,5 @@
-FROM jupyter/base-notebook:python-3.7.6
+# Ubuntu 20.04, Python 3.10, 2022-10-09
+FROM jupyter/base-notebook:f3079808ca8c
 
 
 USER root
@@ -29,4 +30,4 @@ RUN fix-permissions /opt/install
 
 USER $NB_USER
 RUN cd /opt/install && \
-   conda env update -n base --file environment.yml
+   mamba env update -n base --file environment.yml
