@@ -4,22 +4,21 @@ USER root
 
 RUN apt-get -y -qq update \
  && apt-get -y -qq install \
-        dbus-x11 \
         # xclip is added as jupyter-remote-desktop-proxy's tests requires it
         xclip \
-        xfce4 \
-        xfce4-panel \
-        xfce4-session \
-        xfce4-settings \
-        xorg \
-        xubuntu-icon-theme \
-        fonts-dejavu \
-    # Disable the automatic screenlock since the account password is unknown
- && apt-get -y -qq remove xfce4-screensaver \
+        ubuntu-mate-desktop \
+        vim \
+ && add-apt-repository -y ppa:mozillateam/ppa \
+ && printf 'Package: firefox*\nPin: release o=LP-PPA-mozillateam\nPin-Priority: 1001\n' > /etc/apt/preferences.d/firefox \
+ && apt-get install -y -q firefox \
+ && apt-get purge -y -q \
+        blueman \
+        mate-screensaver \
+ && apt-get autoremove -y -q \
     # chown $HOME to workaround that the xorg installation creates a
     # /home/jovyan/.cache directory owned by root
     # Create /opt/install to ensure it's writable by pip
- && mkdir -p /opt/install \
+ && mkdir -p /opt/install $HOME/.vnc \
  && chown -R $NB_UID:$NB_GID $HOME /opt/install \
  && rm -rf /var/lib/apt/lists/*
 
@@ -30,7 +29,6 @@ RUN if [ "${vncserver}" = "tigervnc" ]; then \
         apt-get -y -qq update; \
         apt-get -y -qq install \
             tigervnc-standalone-server \
-            tigervnc-xorg-extension \
         ; \
         rm -rf /var/lib/apt/lists/*; \
     fi
@@ -58,3 +56,12 @@ RUN . /opt/conda/bin/activate && \
 COPY --chown=$NB_UID:$NB_GID . /opt/install
 RUN . /opt/conda/bin/activate && \
     pip install /opt/install
+
+COPY --chown=$NB_UID:$NB_GID start-mate.sh $HOME/.vnc/xstartup
+
+# Add some shortcuts to the desktop
+RUN mkdir -p $HOME/Desktop && \
+    ln -s \
+        /usr/share/applications/mate-terminal.desktop \
+        /usr/share/applications/firefox.desktop \
+        $HOME/Desktop

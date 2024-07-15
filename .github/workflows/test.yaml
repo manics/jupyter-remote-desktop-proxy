@@ -60,7 +60,7 @@ jobs:
 
       - name: Test vncserver
         run: |
-          container_id=$(docker run -d -it -p 5901:5901 test vncserver -xstartup /opt/install/jupyter_remote_desktop_proxy/share/xstartup -verbose -fg -geometry 1680x1050 -SecurityTypes None -rfbport 5901)
+          container_id=$(docker run -d -it -p 5901:5901 test vncserver -xstartup /home/jovyan/.vnc/xstartup -verbose -fg -geometry 1680x1050 -SecurityTypes None -rfbport 5901)
           sleep 1
 
           echo "::group::Install netcat, a test dependency"
