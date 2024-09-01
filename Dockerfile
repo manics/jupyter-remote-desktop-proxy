@@ -10,7 +10,7 @@ RUN apt-get -y -qq update \
         vim \
  && add-apt-repository -y ppa:mozillateam/ppa \
  && printf 'Package: firefox*\nPin: release o=LP-PPA-mozillateam\nPin-Priority: 1001\n' > /etc/apt/preferences.d/firefox \
- && apt-get install -y -q firefox \
+ && apt-get install -y -q --allow-downgrades firefox \
  && apt-get purge -y -q \
         blueman \
         mate-screensaver \
